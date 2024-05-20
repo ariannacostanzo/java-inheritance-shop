@@ -5,11 +5,11 @@ import java.util.Random;
 public class Product {
 
     //attributi
-    private int code;
-    private String name;
-    private String description;
-    private double price;
-    private int vat;
+    protected int code;
+    protected String name;
+    protected String description;
+    protected double price;
+    protected int vat;
     //private bigDecimal price; il default vuoto è null non 0
     //bigDecimal ha un metodo price.setScale(2, RoundingMode.HALF_EVEN); per restituire sempre due decimali
 
