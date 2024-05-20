@@ -7,7 +7,7 @@ public class Cart {
     public static void main(String[] args) {
 
         //prodotto generico
-        Product pane = new Product(22, "bread", "casereccio", 2.50);
+        Product pane = new Product(22, "bread", "casereccio", 10);
         //smartphone
         Smartphone iphone = new Smartphone(22, "Iphone 16 Pro", "", 1300, "350123451234560", 8);
         //tv
@@ -29,6 +29,15 @@ public class Cart {
 
         //inizializzo un array di tanti elementi quanto quello che mi ha risposto l'utente
         Product[] cart = new Product[quantity];
+        double total = 0;
+        System.out.println("Hai una carta fedeltà? (y/n)");
+        char replyFidelity = scanner.nextLine().charAt(0);
+        boolean fidelityCard;
+        if (replyFidelity == 'y') {
+            fidelityCard = true;
+        } else {
+            fidelityCard = false;
+        }
 
         for (int i = 0; i < cart.length; i++) {
             System.out.println("Cosa vuoi inserire? Smartphone(s), Televisore(t) o Cuffie(c)?");
@@ -75,14 +84,20 @@ public class Cart {
             }
 
             System.out.println("Hai inserito: " + cart[i].toString());
+            System.out.println(String.format("Il prezzo con iva è: %.2f €", cart[i].getVatPrice()));
+            if (fidelityCard) {
+                System.out.println(String.format("Il prezzo scontato per la cartà fedeltà è: %.2f €", cart[i].getDiscountedPrice(fidelityCard)));
+            }
 
         }
 
         System.out.println("Il tuo carrello: ");
         for (Product product : cart) {
             System.out.println(product.toString());
+            total += product.getDiscountedPrice(fidelityCard);
         }
 
+        System.out.println(String.format("Il totale del carrello è: %.2f €", total));
 
 
         scanner.close();

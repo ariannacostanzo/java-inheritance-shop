@@ -30,6 +30,19 @@ public class Smartphone extends Product{
     }
 
 
+    @Override
+    public double getDiscountedPrice(boolean hasFidelityCard) {
+        double discountedPrice = 0;
+        if (hasFidelityCard) {
+            if (ram < 32) {
+                discountedPrice = (price * 0.05);
+            } else {
+                discountedPrice = (price * 0.02);
+            }
+        }
+
+        return getVatPrice() - discountedPrice;
+    }
     //getter e setter
 
     public String getImeiCode() {

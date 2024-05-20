@@ -1,5 +1,6 @@
 package exercises.inheritance;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Product {
@@ -40,6 +41,14 @@ public class Product {
         return Math.round(vatPrice * 100.0) / 100.0;
     }
 
+    public double getDiscountedPrice(boolean hasFidelityCard) {
+        double discountedPrice = 0;
+        if (hasFidelityCard) {
+            discountedPrice = (price * 0.02);
+        }
+        return getVatPrice() - discountedPrice;
+    }
+
     //metodi di servizio
     private int getRandom() {
         Random random = new Random();
@@ -54,7 +63,11 @@ public class Product {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (Objects.equals(name, "")) {
+            this.name = "";
+        } else {
+            this.name = name;
+        }
         //se faccio una validazione conviene che l'attributo nel costruttore sia creato anche con setprice
     }
 

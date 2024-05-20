@@ -30,6 +30,20 @@ public class Headphones extends Product{
     }
 
 
+    @Override
+    public double getDiscountedPrice(boolean hasFidelityCard) {
+        double discountedPrice = 0;
+        if (hasFidelityCard) {
+            if (!isItWireless) {
+                discountedPrice = (price * 0.07);
+            } else {
+                discountedPrice = (price * 0.02);
+            }
+        }
+
+        return getVatPrice() - discountedPrice;
+    }
+
     //getter e setter
 
     public String getColor() {

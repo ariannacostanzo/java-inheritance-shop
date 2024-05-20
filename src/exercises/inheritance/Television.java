@@ -30,6 +30,18 @@ public class Television extends Product{
                 '}';
     }
 
+    @Override
+    public double getDiscountedPrice(boolean hasFidelityCard) {
+        double discountedPrice = 0;
+        if (hasFidelityCard) {
+            if (!isItSmart) {
+                discountedPrice = (price * 0.1);
+            } else {
+                discountedPrice = (price * 0.02);
+            }
+        }
+        return getVatPrice() - discountedPrice;
+    }
 
     //getter e setter
 
